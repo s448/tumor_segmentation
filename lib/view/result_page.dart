@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tumer_segmentation/components/app_bar.dart';
 import 'package:tumer_segmentation/model/response.dart' hide Image;
 import 'package:url_launcher/url_launcher.dart';
+
+import '../controller/upload_mri_controller.dart';
+
 class ResultPage extends StatefulWidget {
   ResultPage({Key? key}) : super(key: key);
 
@@ -10,40 +14,65 @@ class ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<ResultPage> {
-  ResponseModel? data ;
+  UploadMRIController logic = Get.find();
+  ResponseModel? data;
   var url;
-@override
+  @override
   void initState() {
-   data = Get.arguments;
-   url =Uri.parse(data!.data!.image!.url.toString());
-   print(url);
-   print(data!.data!.image!.url.toString());
+    data = Get.arguments;
+    url = Uri.parse(data!.data!.image!.url.toString());
+    print(url);
+    print(data!.data!.image!.url.toString());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    // print(Get.arguments);
+    bool result = !data!.success!;
+    String message = result ? "Congratulations, No Tumor" : "Unfortunately, Tumor Exist";
     return Scaffold(
-      appBar: AppBar(title: const Text("Result Page"),centerTitle: true,),
+      appBar: AppBar(
+        title: const SharedAppBar(),
+        toolbarHeight: Get.height * 0.2,
+        actions: null,
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Text(data!.success == true ? "Successful request" : "Request Failed"),),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.network(data!.data!.image!.url.toString()),
+            padding: const EdgeInsets.all(12.0),
+            child: Image.file(
+              logic.imgFile!,
+              fit: BoxFit.cover,
+            ),
           ),
-          TextButton(onPressed: ()async{
-            if (!await launchUrl(
-            url,
-            mode: LaunchMode.externalApplication,
-            webViewConfiguration: const WebViewConfiguration(enableJavaScript: false),
-            )) {
-            throw Exception('Could not launch $url');
-            }
-          }, child:const Text("رابط الصورة عالسيرفر"))
+          // Center(child: Text(data!.success == true ? "Successful request" : "Request Failed"),),
+          // TextButton(onPressed: ()async{
+          //   if (!await launchUrl(
+          //   url,
+          //   mode: LaunchMode.externalApplication,
+          //   webViewConfiguration: const WebViewConfiguration(enableJavaScript: false),
+          //   )) {
+          //   throw Exception('Could not launch $url');
+          //   }
+          // }, child:const Text("رابط الصورة عالسيرفر"))
+          Container(
+            alignment: Alignment.center,
+            margin: const EdgeInsets.all(12.0),
+            width: Get.width,
+            height: Get.height * 0.15,
+            decoration: BoxDecoration(
+              color: result ?const Color.fromRGBO(112,141,83,0.8) : const Color.fromRGBO(244,80,80,0.7),
+              border: Border.all(
+                width: 5,
+                color: result ? const Color.fromRGBO(55, 139, 37, 1) : const Color.fromRGBO(152,18,18,1),
+              ),
+              borderRadius: BorderRadius.circular(6.0)
+            ),
+            child: Text(message, style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+          )
         ],
-      )
+      ),
     );
   }
 }

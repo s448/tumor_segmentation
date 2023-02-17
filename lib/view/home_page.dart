@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tumer_segmentation/components/app_bar.dart';
 
 import '../controller/upload_mri_controller.dart';
 
@@ -20,21 +21,22 @@ class _HomePageState extends State<HomePage> {
         builder: (context) {
           bool selected = logic.imgFile != null;
           return Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                title: const Text("Tumor Detection"),
-              ),
+            appBar: AppBar(
+              title: SharedAppBar(),
+              toolbarHeight: Get.height * 0.2
+            ),
               body: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    alignment: Alignment.center,
                     padding: const EdgeInsets.all(12.0),
                     child: !selected
                         ? Column(
                             children: [
                               const IntrinsicHeight(
                                 child: Text(
-                                  "Click here to select the Brain MRI : ",
+                                  "Upload Brain MR image",
                                   textAlign: TextAlign.center,
                                   softWrap: true,
                                   maxLines: 3,
@@ -49,12 +51,16 @@ class _HomePageState extends State<HomePage> {
                                     logic.selectImgFromGallery();
                                   }),
                                   child: CircleAvatar(
-                                    radius: Get.width * 0.2,
-                                    child: Image.asset(
-                                      "assets/brain.png",
-                                      width: Get.width * 0.5,
-                                      height: Get.height * 0.4,
-                                      fit: BoxFit.fitWidth,
+                                    radius: Get.width * 0.209,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      radius: Get.width * 0.2,
+                                      child: Image.asset(
+                                        "assets/upload.png",
+                                        width: Get.width * 0.5,
+                                        height: Get.height * 0.4,
+                                        fit: BoxFit.fitWidth,
+                                      ),
                                     ),
                                   ))
                             ],
@@ -64,20 +70,26 @@ class _HomePageState extends State<HomePage> {
                             fit: BoxFit.cover,
                           ),
                   ),
-                  Center(
-                      child: selected
-                          ? ElevatedButton(
-                              onPressed: (() {
-                                selected
-                                    ? logic.uploadImgToServer()
-                                    : logic.selectImgFromGallery();
-                              }),
-                              child: Text(selected
-                                  ? "Upload MRI for processing"
-                                  : "Select another MRI from Gallery"),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Center(
+                        child: selected
+                            ? SizedBox(
+                          width: Get.width ,
+                              child: ElevatedButton(
+                                  onPressed: (() {
+                                    selected
+                                        ? logic.uploadImgToServer()
+                                        : logic.selectImgFromGallery();
+                                  }),
+                                  child: Text(selected
+                                      ? "Upload"
+                                      : "Select another MRI from Gallery"),
+                                ),
                             )
-                          : const SizedBox()),
-                  logic.uploading ? CircularProgressIndicator() : SizedBox()
+                            : const SizedBox()),
+                  ),
+                  logic.uploading ? const CircularProgressIndicator() : const SizedBox()
                 ],
               ));
         });
