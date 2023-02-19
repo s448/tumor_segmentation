@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../controller/upload_mri_controller.dart';
 
 class ResultPage extends StatefulWidget {
-  ResultPage({Key? key}) : super(key: key);
+  const ResultPage({Key? key}) : super(key: key);
 
   @override
   State<ResultPage> createState() => _ResultPageState();
@@ -46,16 +46,6 @@ class _ResultPageState extends State<ResultPage> {
               fit: BoxFit.cover,
             ),
           ),
-          // Center(child: Text(data!.success == true ? "Successful request" : "Request Failed"),),
-          // TextButton(onPressed: ()async{
-          //   if (!await launchUrl(
-          //   url,
-          //   mode: LaunchMode.externalApplication,
-          //   webViewConfiguration: const WebViewConfiguration(enableJavaScript: false),
-          //   )) {
-          //   throw Exception('Could not launch $url');
-          //   }
-          // }, child:const Text("رابط الصورة عالسيرفر"))
           Container(
             alignment: Alignment.center,
             margin: const EdgeInsets.all(12.0),

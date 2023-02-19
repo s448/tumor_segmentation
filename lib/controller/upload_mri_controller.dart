@@ -13,8 +13,8 @@ class UploadMRIController extends GetxController {
   final ImagePicker? imagePicker = ImagePicker();
   File? imgFile;
 
-  selectImgFromGallery() async {
-    XFile? file = await imagePicker?.pickImage(source: ImageSource.gallery);
+  selectImgFromGallery(bool camFlag) async {
+    XFile? file = await imagePicker?.pickImage(source: camFlag? ImageSource.camera : ImageSource.gallery);
     if (file != null) {
       imgFile = File(file.path);
     }
@@ -22,7 +22,6 @@ class UploadMRIController extends GetxController {
   }
 
   bool uploading = false;
-
   uploadImgToServer() async {
     String fileName = imgFile!.path.split('/').last;
     var dio = Dio();
