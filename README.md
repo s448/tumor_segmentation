@@ -1,16 +1,5 @@
-# tumer_segmentation
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![1](https://user-images.githubusercontent.com/59616620/219959727-6655ff33-3150-4914-81b5-2152d05efe6f.png)
+![2](https://user-images.githubusercontent.com/59616620/219959729-d5bbd9f6-89bf-49ca-be3b-91354769529c.png)
+![3](https://user-images.githubusercontent.com/59616620/219959730-7e13f52d-4482-4f6d-8b64-746aea5e9b68.png)
+![4](https://user-images.githubusercontent.com/59616620/219959737-5ce404e7-d4e7-4850-a20a-4361527fe79e.png)
+![5](https://user-images.githubusercontent.com/59616620/219959743-380946a8-0bd6-48f4-b506-cf1bdc1c7be6.png)
