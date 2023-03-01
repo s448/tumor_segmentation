@@ -1,12 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:dio_client/dio_client.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide FormData, MultipartFile;
 import 'package:image_picker/image_picker.dart';
-import 'package:tumer_segmentation/view/home_page.dart';
 import 'package:tumer_segmentation/view/result_page.dart';
 import 'package:tumer_segmentation/model/response.dart';
 class UploadMRIController extends GetxController {
@@ -21,17 +17,24 @@ class UploadMRIController extends GetxController {
     update();
   }
 
+  removeImg(){
+    imgFile = null;
+    update();
+  }
+
   bool uploading = false;
   uploadImgToServer() async {
     String fileName = imgFile!.path.split('/').last;
     var dio = Dio();
     var formData = FormData.fromMap({
-      "key": "7366d145db31b71b6b2c5f674cc82dd4",
-      "image": await MultipartFile.fromFile(imgFile!.path, filename: fileName),
-      "name": fileName,
+      "file" : await MultipartFile.fromFile(imgFile!.path, filename: fileName),
+      // "key": "7366d145db31b71b6b2c5f674cc82dd4",
+      // "image": await MultipartFile.fromFile(imgFile!.path, filename: fileName),
+      // "name": fileName,
     });
     var response = await dio.post(
-      "https://api.imgbb.com/1/upload",
+      "http://10.0.2.2:8080/predict",
+     // "https://api.imgbb.com/1/upload",
       data: formData,
       onSendProgress: ((count, total){
         uploading = true;
@@ -46,14 +49,15 @@ class UploadMRIController extends GetxController {
     if(response != null) {
       final Map<String,dynamic> parsed = json.decode(response.toString());
       final ResponseModel res = ResponseModel.fromJson(parsed);
-
-      // print(res.data!.image!.url.toString());
-     //print(">>>>>>>>>>>>>>>>>>>>>>>>>"+ list.data.toString());
-      Get.to(ResultPage(),arguments: res);
+      if(res.result != -1){
+        Get.to(const ResultPage(),arguments: res);
+      }
+      else{
+        Get.snackbar("Couldn't diagnose the image", "please try again");
+      }
     }
     uploading = false;
     update();
-    // debugPrint(response.toString());
   }
   var count = 0;
   var total = 0;

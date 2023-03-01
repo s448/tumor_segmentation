@@ -22,7 +22,7 @@ class SharedAppBar extends StatelessWidget {
             ),
             const Expanded(
               child:  Text(
-                "Machine Learning-based Tumor Segmentation for MRI images",
+                "Machine Learning-based Tumor Classification for MRI images",
                 softWrap: true,
                 maxLines: 8,
                 style: TextStyle(

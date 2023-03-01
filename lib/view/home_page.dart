@@ -53,15 +53,15 @@ class _HomePageState extends State<HomePage> {
                                     onTap: (() {
                                       Get.defaultDialog(
                                         title: "",
-                                      content:  SizedBox(
+                                        content: SizedBox(
                                           width: Get.width,
                                           child: Column(
                                             children: [
                                               CustomButton(
                                                 action: (() {
                                                   debugPrint("Camera");
-                                                  logic
-                                                      .selectImgFromGallery(true);
+                                                  logic.selectImgFromGallery(
+                                                      true);
                                                   Get.back();
                                                 }),
                                                 buttonText: "Camera",
@@ -96,13 +96,31 @@ class _HomePageState extends State<HomePage> {
                                     ))
                               ],
                             )
-                          : SizedBox(
-                        height: Get.height *0.6,
-                            child: Image.file(
+                          : Stack(children: [
+                              Image.file(
                                 logic.imgFile!,
-                                fit: BoxFit.contain,
+                                fit: BoxFit.cover,
+                                width: Get.width *0.8,
                               ),
-                          ),
+                              Positioned(
+                                right: 0,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: IconButton(
+                                    onPressed: (() {
+                                      logic.removeImg();
+                                    }),
+                                    icon: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      child: Icon(
+                                        Icons.close,
+                                        color: Colors.red.shade700,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ]),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -116,12 +134,12 @@ class _HomePageState extends State<HomePage> {
                                     }),
                                     child: logic.uploading
                                         ? const Padding(
-                                          padding: EdgeInsets.all(4.0),
-                                          child:  CircularProgressIndicator(
-                                      color: Colors.white,
-                                      strokeWidth: 2,
-                                    ),
-                                        )
+                                            padding: EdgeInsets.all(4.0),
+                                            child: CircularProgressIndicator(
+                                              color: Colors.white,
+                                              strokeWidth: 2,
+                                            ),
+                                          )
                                         : const Text("Upload"),
                                   ),
                                 )

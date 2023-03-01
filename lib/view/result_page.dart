@@ -20,15 +20,13 @@ class _ResultPageState extends State<ResultPage> {
   @override
   void initState() {
     data = Get.arguments;
-    url = Uri.parse(data!.data!.image!.url.toString());
-    print(url);
-    print(data!.data!.image!.url.toString());
+    debugPrint(data!.toJson().toString());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool result = !data!.success!;
+    bool result = data!.result == 0;
     String message = result ? "Congratulations, No Tumor" : "Unfortunately, Tumor Exist";
     return Scaffold(
       appBar: AppBar(
