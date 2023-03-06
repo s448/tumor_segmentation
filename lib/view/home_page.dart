@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:tumer_segmentation/components/app_bar.dart';
 import 'package:tumer_segmentation/components/shared_button.dart';
 import '../controller/upload_mri_controller.dart';
-import 'package:tumer_segmentation/constants/colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -37,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                                 const SizedBox(height: 50),
                                 const IntrinsicHeight(
                                   child: Text(
-                                    "Upload Brain MR image",
+                                    "Upload the Brain MRI image",
                                     textAlign: TextAlign.center,
                                     softWrap: true,
                                     maxLines: 3,
@@ -49,51 +48,33 @@ class _HomePageState extends State<HomePage> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                InkWell(
-                                    onTap: (() {
-                                      Get.defaultDialog(
-                                        title: "",
-                                        content: SizedBox(
-                                          width: Get.width,
-                                          child: Column(
-                                            children: [
-                                              CustomButton(
-                                                action: (() {
-                                                  debugPrint("Camera");
-                                                  logic.selectImgFromGallery(
-                                                      true);
-                                                  Get.back();
-                                                }),
-                                                buttonText: "Camera",
-                                              ),
-                                              CustomButton(
-                                                action: (() {
-                                                  debugPrint("Gallery");
-                                                  logic.selectImgFromGallery(
-                                                      false);
-                                                  Get.back();
-                                                }),
-                                                buttonText: "Gallery",
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                      // logic.selectImgFromGallery();
-                                    }),
-                                    child: CircleAvatar(
-                                      radius: Get.width * 0.209,
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        radius: Get.width * 0.2,
-                                        child: Image.asset(
-                                          "assets/upload.png",
-                                          width: Get.width * 0.5,
-                                          height: Get.height * 0.4,
-                                          fit: BoxFit.fitWidth,
-                                        ),
+                                SizedBox(
+                                  width: Get.width,
+                                  child: Column(
+                                    children: [
+                                      CustomButton(
+                                        action: (() {
+                                          debugPrint("Camera");
+                                          logic.selectImgFromGallery(
+                                              true);
+                                          Get.back();
+                                        }),
+                                        buttonText: "Camera",
+                                        ic: const Icon(Icons.camera_alt),
                                       ),
-                                    ))
+                                      CustomButton(
+                                        action: (() {
+                                          debugPrint("Gallery");
+                                          logic.selectImgFromGallery(
+                                              false);
+                                          Get.back();
+                                        }),
+                                        buttonText: "Gallery",
+                                        ic: const Icon(Icons.image_outlined),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ],
                             )
                           : Stack(children: [

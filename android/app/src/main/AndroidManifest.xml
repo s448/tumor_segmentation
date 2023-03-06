@@ -2,7 +2,7 @@
     package="com.example.tumer_segmentation">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="tumer_segmentation"
+        android:label="Brain tumor classification"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
