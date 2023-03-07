@@ -74,5 +74,5 @@ flutter_native_splash:
   color: "#ffffff"
   image: assets/logo/splash.png
   color_dark: "#121212"
-  fullscreen: true
+  fullscreen: false
   web: false

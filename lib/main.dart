@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tumer_segmentation/view/home_page.dart';
-import 'package:tumer_segmentation/view/result_page.dart';
 import 'package:tumer_segmentation/constants/colors.dart';
 void main() {
   runApp(const MyApp());
