@@ -4,6 +4,8 @@
 <h4>the app was created as an Interface for consuming our deep learning model for detecting Brain tumor based on MRI images for the brain</h4>
 <h4>I've used GetX for state managemanet and Dio for handling the networking phase</h4>
 <h4>if you are interested in the backend connected to this project you can get the FLASK API repo including the deep learning model in the link below</h4>
+[![GitHub](https://img.shields.io/badge/--181717?logo=github&logoColor=ffffff)](https://github.com/s448/brain-tumor-flask-api)
+
 <a href="https://github.com/s448/brain-tumor-flask-api">Click me for API repo!</a>
 
 ![1](https://user-images.githubusercontent.com/59616620/219959727-6655ff33-3150-4914-81b5-2152d05efe6f.png)
