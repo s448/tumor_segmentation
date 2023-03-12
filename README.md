@@ -1,3 +1,5 @@
+[![GitHub commits](https://badgen.net/github/commits/Naereen/Strapdown.js)](https://GitHub.com/Naereen/StrapDown.js/commit/)
+
 <h3>This is my graduation project application made with flutter</h3>
 <h4>the app was created as an Interface for consuming our deep learning model for detecting Brain tumor based on MRI images for the brain</h4>
 <h4>I've used GetX for state managemanet and Dio for handling the networking phase</h4>
