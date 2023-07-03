@@ -7,7 +7,8 @@ import 'package:tumer_segmentation/view/result_page.dart';
 import 'package:tumer_segmentation/model/response.dart';
 
 import '../components/dialog.dart';
-class UploadMRIController extends GetxController {
+
+class ApiServices extends GetxController {
   final ImagePicker? imagePicker = ImagePicker();
   File? imgFile;
 
