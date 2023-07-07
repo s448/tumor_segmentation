@@ -27,7 +27,7 @@ class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
     bool result = data!.result == 0;
-    String message = result ? "Congratulations, No Tumor" : "Unfortunately, Tumor Exist";
+    String message = result ? "Tumor doesn't exist" : "Tumor Exists";
     return Scaffold(
       appBar: AppBar(
         title: const SharedAppBar(),
@@ -37,11 +37,14 @@ class _ResultPageState extends State<ResultPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Image.file(
-              logic.imgFile!,
-              fit: BoxFit.cover,
+          Container(
+            height: Get.height * 0.5,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Image.file(
+                logic.imgFile!,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Container(
@@ -49,15 +52,13 @@ class _ResultPageState extends State<ResultPage> {
             margin: const EdgeInsets.all(12.0),
             width: Get.width,
             height: Get.height * 0.15,
-            decoration: BoxDecoration(
-              color: result ?const Color.fromRGBO(112,141,83,0.8) : const Color.fromRGBO(244,80,80,0.7),
-              border: Border.all(
-                width: 5,
-                color: result ? const Color.fromRGBO(55, 139, 37, 1) : const Color.fromRGBO(152,18,18,1),
-              ),
-              borderRadius: BorderRadius.circular(6.0)
-            ),
-            child: Text(message, style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+            child: Column(
+              children: [
+                const Text("Result",),
+                const SizedBox(height: 5,),
+                Text(message, style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+              ],
+            )
           )
         ],
       ),

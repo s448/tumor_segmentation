@@ -41,8 +41,8 @@ class UploadMRIController extends GetxController {
     });
     try {
       response = await dio.post(
-        //"https://6f92-196-129-138-12.eu.ngrok.io/predict", //hosting on ngrok
-        "http://10.0.2.2:8080/predict", //hosting on local machine
+        "https://5adc5c10f7d3-842727659055232011.ngrok-free.app/predict", //static ngrok subdomain
+       // "http://10.0.2.2:8080/predict", //hosting on local machine
         // "https://api.imgbb.com/1/upload", //testing the app on test API
         data: formData,
         onSendProgress: ((count, total) {
